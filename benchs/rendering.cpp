@@ -1,0 +1,51 @@
+// Test the speed of calling the heatmap point adding function once for
+// every single point (a la glVertex3f) vs. calling one function which
+// adds a whole buffer of points (a la glVertexPointer). Basically, time
+// the function call overhead.
+
+#include "benchs/common.hpp"
+
+static const size_t MAPSIZE_MIN = 128;
+static const size_t MAPSIZE_MAX = 16384; // That's 1 gig of ram already
+static const size_t NPOINTS = 1000;
+static const size_t STAMP = 128;
+
+int main(/* int argc, char *argv[] */)
+{
+    // We'll do something funky with ret in order to avoid optimizing
+    // whole code-blocks away.
+    int ret = 0;
+
+    std::unique_ptr<heatmap_stamp_t> stamp(heatmap_stamp_gen(STAMP));
+
+    std::cerr << "[" << std::endl;
+    for(size_t mapsize = MAPSIZE_MIN ; mapsize <= MAPSIZE_MAX ; mapsize *= 2) {
+        // All of this is preparing the heatmap to be rendered.
+        std::unique_ptr<heatmap_t> hm(heatmap_new(mapsize, mapsize));
+        auto points = genpoints(NPOINTS, mapsize);
+
+        for(size_t i = 0 ; i < NPOINTS ; ++i) {
+            heatmap_add_point_with_stamp(hm.get(), points[2*i], points[2*i+1], stamp.get());
+        }
+        std::vector<unsigned char> imgbuf(mapsize*mapsize*4);
+
+        // Finally, we can render it!
+        std::cerr << "{'mapsize': " << mapsize << ", 'saturation': false, ";
+        std::cout << "Rendering a " << mapsize << "² map without saturation... " << std::flush;
+        for(RepeatTimer t(5) ; t ; t.next()) {
+            heatmap_render_to(hm.get(), heatmap_cs_default, &imgbuf[0]);
+        }
+        ret += imgbuf[0];
+
+        std::cerr << "{'mapsize': " << mapsize << ", 'saturation': true, ";
+        std::cout << "Rendering a " << mapsize << "² map with saturation... " << std::flush;
+        for(RepeatTimer t(5) ; t ; t.next()) {
+            heatmap_render_saturated_to(hm.get(), heatmap_cs_default, 0.5f, &imgbuf[0]);
+        }
+        ret += imgbuf[0];
+    }
+    std::cerr << "]" << std::endl;
+
+    return ret;
+}
+
