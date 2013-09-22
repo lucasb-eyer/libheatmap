@@ -6,7 +6,7 @@ High performance C heatmap generation library.
 Not your typical website-user-focus-heatmap library!
 (Even-though it might be abused for that purpose due to the high performance.)
 
-[![Deaths of the third international](examples/ti3_deaths.png)](examples/ti3_deaths_full.png)
+[![Deaths of the third international](examples/ti3_deaths.png)](examples/ti3_deaths_full.jpg)
 
 **Note:** While the library is fully functional and thoroughly tested,
 the best possible performance has not been attained yet. I'm still trying out
@@ -67,7 +67,7 @@ game.) Of course, this library is both flexible and highly efficient :)
 
 The main packages I played with (I will definitely have missed some) are:
 
-- [heatmap.py](jjguy.com/heatmap), which:
+- [heatmap.py](http://jjguy.com/heatmap), which:
     - Doesn't normalize! It only saturates.
     - Doesn't allow a custom colorscheme, and only comes with 5 ugly ones.
     - Doesn't allow for custom stamps.
@@ -78,7 +78,7 @@ The main packages I played with (I will definitely have missed some) are:
 - Your favourite dataviz library, such as
     - [matplotlib](http://matplotlib.org/gallery.html) of which I couldn't find this kind of heatmap,
     - [R](http://stackoverflow.com/questions/4885251/drawing-a-heatmap-in-r-based-on-zipcodes-only) let's not go into that...,
-    - a whole bunch of [closed-source](http://pic.dhe.ibm.com/infocenter/elixent/v3r5/topic/com.ibm.ilog.elixir.doc/Content/Visualization/Documentation/Flex/Elixir_Enterprise/_pubskel/ps_elixir_corecomponents121.html) [monsters](www.mathworks.com/products/matlab), but
+    - a whole bunch of [closed-source](http://pic.dhe.ibm.com/infocenter/elixent/v3r5/topic/com.ibm.ilog.elixir.doc/Content/Visualization/Documentation/Flex/Elixir_Enterprise/_pubskel/ps_elixir_corecomponents121.html) [monsters](http://www.mathworks.com/products/matlab), but
     - none of these is as easy-to-use, fast, and gorgeous as I want it.
 
 Stop talking, show me how to use it!
@@ -115,6 +115,13 @@ Or, in order to have a useless use of `cat`:
 
 ```bash
 $ cat points.txt | examples/heatmap_gen 500 500 10 > heatmap.png
+```
+
+For example, the heatmap you saw in the introduction has been created with the
+following monster command:
+
+```bash
+$ edith/build/edith replays/fountainhooks.dem | cut -d , -f 3- | awk ' !x[$0]++' | python3 edith/cvt.py | heatmap-github/examples/heatmap_gen `identify -format "%w %h" dota2map.png` 150 > deathmap.png
 ```
 
 But let's now look at using the library programmatically.
@@ -362,7 +369,9 @@ for(unsigned i = 0 ; i < npoints ; ++i) {
 // ...
 ```
 
-The [resulting heatmap](examples/hires_heatmap_fixed.png) looks much better.
+The [resulting heatmap](examples/hires_heatmap_fixed.jpg) looks much better.
+(Note, though, that for reasons of filesize I have stored it as .jpg, losing
+transparency as well as some quality.)
 
 ### Funky stamps
 
