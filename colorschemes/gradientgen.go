@@ -6,6 +6,8 @@ import "image"
 import "image/draw"
 import "image/png"
 import "math"
+import "text/template"
+import "strings"
 import "os"
 
 const LICENSE string =
@@ -36,28 +38,28 @@ const LICENSE string =
 `
 
 const HEADER_TEMPLATE string =
-`#ifndef _HEATMAP_COLORSCHEMES_%v_H
-#define _HEATMAP_COLORSCHEMES_%v_H
+`#ifndef _HEATMAP_COLORSCHEMES_{{ToUpper .}}_H
+#define _HEATMAP_COLORSCHEMES_{{ToUpper .}}_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /* This one has only N discrete colors. */
-extern const heatmap_colorscheme_t* heatmap_cs_%v_discrete;
+extern const heatmap_colorscheme_t* heatmap_cs_{{.}}_discrete;
 /* This is a very soft gradient along abovementioned discrete colors. */
-extern const heatmap_colorscheme_t* heatmap_cs_%v_soft;
+extern const heatmap_colorscheme_t* heatmap_cs_{{.}}_soft;
 /* This is a mix of the above two. Makes for a pretty result in many cases. */
-extern const heatmap_colorscheme_t* heatmap_cs_%v_mixed;
+extern const heatmap_colorscheme_t* heatmap_cs_{{.}}_mixed;
 /* An exponential version of the default mix of the above two. */
 /* Use this if your maximum is very "spiked". */
-extern const heatmap_colorscheme_t* heatmap_cs_%v_mixed_exp;
+extern const heatmap_colorscheme_t* heatmap_cs_{{.}}_mixed_exp;
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _HEATMAP_COLORSCHEMES_%v_H */
+#endif /* _HEATMAP_COLORSCHEMES_{{ToUpper .}}_H */
 `
 
 // This table contains the "keypoints" of the colorgradient you want to generate.
@@ -156,10 +158,9 @@ func main() {
     }()
 
     // Might as well already create the header, we know all we need by now.
-    // Since golang is lacking positional printf flags, I don't know of a
-    // better way to do this, except for the template library, which as far
-    // as I can tell would be a kludge here too.
-    fmt.Fprintf(h_file, LICENSE + HEADER_TEMPLATE, name, name, name, name, name, name, name)
+    tmpl, err := template.New("test").Funcs(template.FuncMap{"ToUpper": strings.ToUpper}).Parse(LICENSE + HEADER_TEMPLATE)
+    if err != nil { panic(err) }
+    if err = tmpl.Execute(h_file, name); err != nil { panic(err) }
 
     h := 1024
     w := 40
