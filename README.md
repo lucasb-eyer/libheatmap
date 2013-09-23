@@ -331,6 +331,23 @@ heatmap_colorscheme_t awesome_greens = {
 };
 ```
 
+#### Using the gradientgen.go tool
+
+The [gradientgen.go](colorschemes/gradientgen.go) is a tool which assists you
+in the creation of the four variants of a colorscheme. (It's based on my
+[go-colorful](https://github.com/lucasb-eyer/go-colorful) library, check it out
+if you're a go hacker too!) You need to place the colors of the `discrete`
+gradient in the `keypoints` array
+([line 123](colorschemes/gradientgen.go#L123))
+and invoke the tool with the name of your colorscheme, like
+
+```bash
+go run gradientgen.go awesome_greens
+```
+
+This will generate all four variants of `awesome_greens` in the files
+`awesome_greens.h` and `awesome_greens.c`.
+
 ### Using non-default stamps
 
 Depending on your data, heatmap size and personal preference of banana shapes,
