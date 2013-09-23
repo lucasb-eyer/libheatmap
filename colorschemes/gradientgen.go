@@ -121,6 +121,21 @@ func MustParseHex(s string) colorful.Color {
     return c
 }
 
+// Returns a formatted string. All open positions are filled with a single value.
+// Overkill? Maybe.
+func sprintfOneToMany(f_string, value string) string {
+    //count the number of free positions in the formattable string
+    num_pos := strings.Count(f_string, "%v")
+    //Sprintf expects interfaces
+    values := make([]interface{}, num_pos)
+    for i := range values {
+        values[i] = interface{}(value)
+    }
+
+    //insert the value into all formattable places
+    return fmt.Sprintf(f_string, values...)
+}
+
 func main() {
     // The "keypoints" of the gradient.
     keypoints := GradientTable{
@@ -159,10 +174,7 @@ func main() {
     }()
 
     // Might as well already create the header, we know all we need by now.
-    // Since golang is lacking positional printf flags, I don't know of a
-    // better way to do this, except for the template library, which as far
-    // as I can tell would be a kludge here too.
-    fmt.Fprintf(h_file, LICENSE + HEADER_TEMPLATE, name, name, name, name, name, name, name)
+    fmt.Fprint(h_file, sprintfOneToMany(LICENSE + HEADER_TEMPLATE, name))
 
     h := 1024
     w := 40
