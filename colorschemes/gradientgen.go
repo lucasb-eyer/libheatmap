@@ -1,12 +1,15 @@
 package main
 
-import "fmt"
-import "github.com/lucasb-eyer/go-colorful"
-import "image"
-import "image/draw"
-import "image/png"
-import "math"
-import "os"
+import (
+    "fmt"
+    "github.com/lucasb-eyer/go-colorful"
+    "image"
+    "image/draw"
+    "image/png"
+    "math"
+    "os"
+    "strings"
+)
 
 const LICENSE string =
 `/* heatmap - High performance heatmap creation in C.
