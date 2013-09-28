@@ -336,17 +336,25 @@ heatmap_colorscheme_t awesome_greens = {
 The [gradientgen.go](colorschemes/gradientgen.go) is a tool which assists you
 in the creation of the four variants of a colorscheme. (It's based on my
 [go-colorful](https://github.com/lucasb-eyer/go-colorful) library, check it out
-if you're a go hacker too!) You need to place the colors of the `discrete`
-gradient in the `keypoints` array
-([line 123](colorschemes/gradientgen.go#L123))
-and invoke the tool with the name of your colorscheme, like
+if you're a go hacker working with colors!)
+
+You need to pass the discrete colors in hex format and their "positions"
+between 0.0 and 1.0 as argument list. The awesome_greens from above could be
+generated, including its variants, with the following lengthy command:
 
 ```bash
-go run gradientgen.go awesome_greens
+go run gradientgen.go colorscheme.go -name awesome_greens '#F1F7EE' 0.0 '#D5E6CC' 0.1 '#B9D6AA' 0.2 '#9CC587' 0.3 '#80B465' 0.4 '#669B4B' 0.5 '#4F793A' 0.6 '#395729' 0.7 '#223419' 0.8 '#0C1208' 0.9 '#793A4F' 1.0
 ```
 
 This will generate all four variants of `awesome_greens` in the files
-`awesome_greens.h` and `awesome_greens.c`.
+`awesome_greens.h` and `awesome_greens.c`, as well as a png image for each
+variant. You can specify the dimensions of the png images through the `-w` and
+`-h` parameters; the latter also defines how fine-grained the colorscheme will
+be, as it's the size of the array.
+
+```bash
+go run gradientgen.go colorscheme.go -name awesome_greens -w 100 -h 100 '#F1F7EE' 0.0 ...
+```
 
 ### Using non-default stamps
 
