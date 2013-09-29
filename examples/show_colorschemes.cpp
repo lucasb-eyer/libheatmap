@@ -8,17 +8,43 @@
 
 #include "lodepng.h"
 #include "heatmap.h"
-#include "colorschemes/spectral_variations.h"
 #include "colorschemes/gray.h"
+#include "colorschemes/Blues.h"
+#include "colorschemes/BrBG.h"
+#include "colorschemes/BuGn.h"
+#include "colorschemes/BuPu.h"
+#include "colorschemes/GnBu.h"
+#include "colorschemes/Greens.h"
+#include "colorschemes/Greys.h"
+#include "colorschemes/Oranges.h"
+#include "colorschemes/OrRd.h"
+#include "colorschemes/PiYG.h"
+#include "colorschemes/PRGn.h"
+#include "colorschemes/PuBuGn.h"
+#include "colorschemes/PuBu.h"
+#include "colorschemes/PuOr.h"
+#include "colorschemes/PuRd.h"
+#include "colorschemes/Purples.h"
+#include "colorschemes/RdBu.h"
+#include "colorschemes/RdGy.h"
+#include "colorschemes/RdPu.h"
+#include "colorschemes/RdYlBu.h"
+#include "colorschemes/RdYlGn.h"
+#include "colorschemes/Reds.h"
+#include "colorschemes/Spectral.h"
+#include "colorschemes/YlGnBu.h"
+#include "colorschemes/YlGn.h"
+#include "colorschemes/YlOrBr.h"
+#include "colorschemes/YlOrRd.h"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
     if(argc < 3 || 4 < argc ) {
-        std::cerr << "Invalid number of arguments!" << std::endl;
-        std::cout << "Usage:" << std::endl;
-        std::cout << "  " << argv[0] << " WIDTH HEIGHT [RADIUS]" << std::endl;
+        cerr << "Invalid number of arguments!" << endl;
+        cout << "Usage:" << endl;
+        cout << "  " << argv[0] << " WIDTH HEIGHT [RADIUS]" << endl;
 
         return 1;
     }
@@ -27,10 +53,33 @@ int main(int argc, char* argv[])
     const size_t npoints = 1000;
 
     pair<const heatmap_colorscheme_t*, const char*> schemes[] = {
-        make_pair(heatmap_cs_spectral_discrete, "spectral_discrete.png"),
-        make_pair(heatmap_cs_spectral_soft, "spectral_soft.png"),
-        make_pair(heatmap_cs_spectral_mixed, "spectral_mixed.png"),
-        make_pair(heatmap_cs_spectral_mixed_exp, "spectral_mixed_exp.png"),
+        make_pair(heatmap_cs_Blues_mixed, "Blues_mixed.png"),
+        make_pair(heatmap_cs_BrBG_mixed, "BrBG_mixed.png"),
+        make_pair(heatmap_cs_BuGn_mixed, "BuGn_mixed.png"),
+        make_pair(heatmap_cs_BuPu_mixed, "BuPu_mixed.png"),
+        make_pair(heatmap_cs_GnBu_mixed, "GnBu_mixed.png"),
+        make_pair(heatmap_cs_Greens_mixed, "Greens_mixed.png"),
+        make_pair(heatmap_cs_Greys_mixed, "Greys_mixed.png"),
+        make_pair(heatmap_cs_Oranges_mixed, "Oranges_mixed.png"),
+        make_pair(heatmap_cs_OrRd_mixed, "OrRd_mixed.png"),
+        make_pair(heatmap_cs_PiYG_mixed, "PiYG_mixed.png"),
+        make_pair(heatmap_cs_PRGn_mixed, "PRGn_mixed.png"),
+        make_pair(heatmap_cs_PuBuGn_mixed, "PuBuGn_mixed.png"),
+        make_pair(heatmap_cs_PuBu_mixed, "PuBu_mixed.png"),
+        make_pair(heatmap_cs_PuOr_mixed, "PuOr_mixed.png"),
+        make_pair(heatmap_cs_PuRd_mixed, "PuRd_mixed.png"),
+        make_pair(heatmap_cs_Purples_mixed, "Purples_mixed.png"),
+        make_pair(heatmap_cs_RdBu_mixed, "RdBu_mixed.png"),
+        make_pair(heatmap_cs_RdGy_mixed, "RdGy_mixed.png"),
+        make_pair(heatmap_cs_RdPu_mixed, "RdPu_mixed.png"),
+        make_pair(heatmap_cs_RdYlBu_mixed, "RdYlBu_mixed.png"),
+        make_pair(heatmap_cs_RdYlGn_mixed, "RdYlGn_mixed.png"),
+        make_pair(heatmap_cs_Reds_mixed, "Reds_mixed.png"),
+        make_pair(heatmap_cs_Spectral_mixed, "Spectral_mixed.png"),
+        make_pair(heatmap_cs_YlGnBu_mixed, "YlGnBu_mixed.png"),
+        make_pair(heatmap_cs_YlGn_mixed, "YlGn_mixed.png"),
+        make_pair(heatmap_cs_YlOrBr_mixed, "YlOrBr_mixed.png"),
+        make_pair(heatmap_cs_YlOrRd_mixed, "YlOrRd_mixed.png"),
     };
 
     // First, create a heatmap which will be rendered using all colorschemes.

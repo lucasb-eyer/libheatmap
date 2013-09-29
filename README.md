@@ -258,7 +258,7 @@ non-peaked regions. In such a case, you could either use the saturating render
 function if you know a good saturation value, or you use the `mixed_exp`
 variant of your favorite colorscheme and hope it looks good.
 
-![The four variants of the default "spectral" colorscheme](examples/cs_types.png)
+![The four variants of the default "Spectral" colorscheme](examples/cs_types.png)
 
 The following picture gives an overview of the shipped colorschemes in their
 `mixed` variants.
