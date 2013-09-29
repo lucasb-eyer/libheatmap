@@ -46,10 +46,10 @@ heatmap.o: heatmap.c heatmap.h
 colorschemes/%.o: colorschemes/%.c colorschemes/%.h
 	$(CC) -c $< $(CFLAGS) -o $@
 
-libheatmap.a: heatmap.o colorschemes/gray.o colorschemes/spectral_variations.o
+libheatmap.a: heatmap.o $(patsubst %.c,%.o,$(wildcard colorschemes/*.c))
 	$(AR) rs $@ $^
 
-libheatmap.so: heatmap.o colorschemes/gray.o colorschemes/spectral_variations.o
+libheatmap.so: heatmap.o $(patsubst %.c,%.o,$(wildcard colorschemes/*.c))
 	$(CC) $(LDFLAGS) -shared -o $@ $^
 
 tests/test.o: tests/test.cpp
