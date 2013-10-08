@@ -165,10 +165,8 @@ unsigned char* heatmap_render_saturated_to(const heatmap_t* h, const heatmap_col
             assert(idx < colorscheme->ncolors);
 
             /* Just copy over the color from the colorscheme. */
-            *colorline++ = colorscheme->colors[idx*4+0];
-            *colorline++ = colorscheme->colors[idx*4+1];
-            *colorline++ = colorscheme->colors[idx*4+2];
-            *colorline++ = colorscheme->colors[idx*4+3];
+            memcpy(colorline, colorscheme->colors + idx*4, 4);
+            colorline += 4;
         }
     }
 
