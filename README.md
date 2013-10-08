@@ -10,7 +10,7 @@ Not your typical website-user-focus-heatmap library!
 
 **Note:** While the library is fully functional and thoroughly tested,
 the best possible performance has not been attained yet. I'm still trying out
-various optimizations (MMX, SSE, AVX, OpenMP) in other branches.
+various optimizations in other branches. See Tuning below.
 
 What exactly?
 =============
@@ -432,6 +432,26 @@ FAQ
 ===
 
 Nuttin' here yet, but I like to have the structure of my documents laid out.
+
+Tuning
+======
+
+The library is currently tuned for both of the following use-cases:
+
+- Creating a huge heatmap with medium "density".
+- Creating a lot of small heatmaps per second.
+
+Although it is fast, it could be much faster for creating very dense heatmaps
+where there are (roughly) more datapoints than pixels. This is because the
+library currently keeps track of a heatmap's max while rendering a datapoint.
+This max-tracking makes SIMD-optimizations useless. (Pull-requests proving the
+opposite are welcome!)
+
+If finding the maximum was postponed to rendering, the whole heatmap would have
+to be walked twice each rendering: first for finding the max, then for
+rendering. This sounds bad, but for those cases in which _many_ points are
+added to the heatmap, but the map is only rendered once, it would allow to
+speed-up the point-addition significantly.
 
 License: MIT
 ============
