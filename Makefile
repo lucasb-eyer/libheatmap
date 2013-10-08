@@ -1,6 +1,6 @@
-CC=gcc
-CXX=g++
-AR=ar
+CC?=gcc
+CXX?=g++
+AR?=ar
 
 # Release mode (If just dropping the lib into your project, check out -flto too.)
 FLAGS=-fPIC -Wall -Wextra -I. -O3 -g -DNDEBUG -fopenmp -Wa,-ahl=$(@:.o=.s)
