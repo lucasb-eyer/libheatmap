@@ -260,14 +260,11 @@ variant of your favorite colorscheme and hope it looks good.
 
 ![The four variants of the default "Spectral" colorscheme](examples/cs_types.png)
 
-The following picture gives an overview of the shipped colorschemes in their
-`mixed` variants.
-
-__TODO:__ also add more colorschemes
-
 The variable-name of a colorscheme follows the `heatmap_cs_NAME_VARIANT`
 pattern, where `NAME` is the name in the overview picture above and `VARIANT`
 is one of `discrete`, `soft`, `mixed`, and `mixed_exp`.
+
+I have created a page to [preview all shipped colorschemes](http://lucasb.eyer.be/prects/heatmap/colorschemes.html).
 
 More advanced stuff
 -------------------
