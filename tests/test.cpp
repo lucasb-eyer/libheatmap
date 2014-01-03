@@ -57,6 +57,23 @@ static bool stamp_almost_eq(heatmap_stamp_t* s, float* expected)
     return almost_eq(s->buf, expected, s->w*s->h);
 }
 
+void test_add_nothing()
+{
+    heatmap_t* hm = heatmap_new(3, 3);
+
+    static float expected[] = {
+        0.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f,
+    };
+
+
+    ENSURE_THAT("the heatmap is full of zeros", heatmap_eq(hm, expected));
+    ENSURE_THAT("the max of the heatmap is zero", hm->max == 0.0f);
+
+    heatmap_free(hm);
+}
+
 void test_add_point_with_stamp_center()
 {
     heatmap_t* hm = heatmap_new(3, 3);
@@ -184,6 +201,23 @@ void test_stamp_gen_nonlinear()
     heatmap_stamp_free(s3);
 }
 
+void test_render_to_nothing()
+{
+    static unsigned char expected[] = {
+        0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,
+        0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,
+        0, 0, 0, 0,   0, 0, 0, 0,   0, 0, 0, 0,
+    };
+
+    heatmap_t* hm = heatmap_new(3, 3);
+
+    unsigned char img[3*3*4] = {1};
+    heatmap_render_to(hm, heatmap_cs_b2w, img);
+    ENSURE_THAT("empty rendered 3x3 heatmap is correct", 0 == memcmp(img, expected, 3*3*4));
+
+    heatmap_free(hm);
+}
+
 void test_render_to_creation()
 {
     static unsigned char expected[] = {
@@ -260,6 +294,7 @@ void test_render_to_saturating()
 
 int main()
 {
+    test_add_nothing();
     test_add_point_with_stamp_center();
     test_add_point_with_stamp_topleft();
     test_add_point_with_stamp_botright();
@@ -268,6 +303,7 @@ int main()
     test_stamp_gen();
     test_stamp_gen_nonlinear();
 
+    test_render_to_nothing();
     test_render_to_creation();
     test_render_to_normalizing();
     test_render_to_saturating();

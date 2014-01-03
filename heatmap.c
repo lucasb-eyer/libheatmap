@@ -123,13 +123,17 @@ unsigned char* heatmap_render_to(const heatmap_t* h, const heatmap_colorscheme_t
     /* TODO: Time whether it makes a noticeable difference to inline that code
      * here and drop the saturation step.
      */
-    return heatmap_render_saturated_to(h, colorscheme, h->max, colorbuf);
+    /* If the heatmap is empty, h->max (and thus the saturation value) is 0.0, resulting in a 0-by-0 division.
+     * In that case, we should set the saturation to anything but 0, since we want the result of the division to be 0.
+     * Also, a comparison to exact 0.0f (as opposed to 1e-14) is OK, since we only do division.
+     */
+    return heatmap_render_saturated_to(h, colorscheme, h->max > 0.0f ? h->max : 1.0f, colorbuf);
 }
 
 unsigned char* heatmap_render_saturated_to(const heatmap_t* h, const heatmap_colorscheme_t* colorscheme, float saturation, unsigned char* colorbuf)
 {
     unsigned y;
-    assert(saturation >= 0.0f);
+    assert(saturation > 0.0f);
 
     /* For convenience, if no buffer is given, malloc a new one. */
     if(!colorbuf) {
@@ -140,7 +144,7 @@ unsigned char* heatmap_render_saturated_to(const heatmap_t* h, const heatmap_col
     }
 
     /* TODO: could actually even flatten this loop before parallelizing it. */
-    /* WTH DID I MEAN WITH THAT? */
+    /* I.e., to go i = 0 ; i < h*w since I don't have any padding! (yet?) */
     for(y = 0 ; y < h->h ; ++y) {
         float* bufline = h->buf + y*h->w;
         unsigned char* colorline = colorbuf + 4*y*h->w;
@@ -152,14 +156,14 @@ unsigned char* heatmap_render_saturated_to(const heatmap_t* h, const heatmap_col
              */
             const float val = (*bufline > saturation ? saturation : *bufline)/saturation;
 
+            /* This is probably caused by a negative entry in the stamp! */
+            assert(val >= 0.0f);
+
             /* We add 0.5 in order to do real rounding, not just dropping the
              * decimal part. That way we are certain the highest value in the
              * colorscheme is actually used.
              */
             const size_t idx = (size_t)((float)(colorscheme->ncolors-1)*val + 0.5f);
-
-            /* This is probably caused by a negative entry in the stamp! */
-            assert(val >= 0.0f);
 
             /* This should never happen. It is likely a bug in this library. */
             assert(idx < colorscheme->ncolors);
