@@ -425,6 +425,9 @@ and the formula leading to it, are shown in the picture below:
 The [full code](examples/customstamp_heatmaps.cpp) for creating these stamps
 and leading to these heatmaps can be found in the examples directory too.
 
+**Note:** There is also example code for creating custom stamps in
+[python](examples/customstamps.py).
+
 FAQ
 ===
 
