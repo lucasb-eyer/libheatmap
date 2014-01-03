@@ -451,7 +451,8 @@ If finding the maximum was postponed to rendering, the whole heatmap would have
 to be walked twice each rendering: first for finding the max, then for
 rendering. This sounds bad, but for those cases in which _many_ points are
 added to the heatmap, but the map is only rendered once, it would allow to
-speed-up the point-addition significantly.
+speed-up the point-addition significantly: No more need for max-test, and thus
+pure bit-blt, which can easily be SIMD-ed!
 
 License: MIT
 ============
