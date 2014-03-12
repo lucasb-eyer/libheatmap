@@ -33,6 +33,7 @@ clean:
 	rm -f examples/heatmap_gen
 	rm -f examples/simplest_c
 	rm -f examples/simplest_cpp
+	rm -f examples/simplest_libpng_cpp
 	rm -f examples/huge
 	rm -f examples/customstamps
 	rm -f examples/customstamp_heatmaps
@@ -81,6 +82,12 @@ examples/simplest_c.o: examples/simplest.c
 
 examples/simplest_c: examples/simplest_c.o examples/lodepng_c.o libheatmap.a
 	$(CC) $^ $(LDFLAGS) -o $@
+
+examples/simplest_libpng_cpp.o: examples/simplest_libpng.cpp
+	$(CXX) -c $< $(CXXFLAGS) -o $@
+
+examples/simplest_libpng_cpp: examples/simplest_libpng_cpp.o libheatmap.a
+	$(CXX) $^ $(LDFLAGS) -lpng -o $@
 
 examples/huge.o: examples/huge.cpp
 	$(CXX) -c $< $(CXXFLAGS) -o $@

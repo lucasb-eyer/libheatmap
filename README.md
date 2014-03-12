@@ -431,7 +431,22 @@ and leading to these heatmaps can be found in the examples directory too.
 FAQ
 ===
 
-Nuttin' here yet, but I like to have the structure of my documents laid out.
+### The rendering to PNG is slow!
+
+That's most likely because you're using [LodePNG](http://lodev.org/lodepng/).
+I'm using it in the examples because it is very easy to use and thus doesn't
+distract from the main point of the example. This convenience comes at a price:
+speed. LodePNG is quite a bit slower than an optimized PNG library such as
+[libpng](http://www.libpng.org/pub/png/libpng.html), which I'd recommend for
+use in production. Since creating png files isn't needed by most hobby-games,
+there aren't many tutorials of that on the net. Because of this, I provided
+an example of writing a png file using libpng in
+[examples/simplest_libpng.cpp](examples/simplest_libpng.cpp). It is about 4x
+faster than the very same example using LodePNG.
+
+The example is not built by default such that it doesn't block compilation
+on systems which don't have `libpng-dev` installed. To compile the example, do
+run `make examples/simplest_libpng_cpp`.
 
 Tuning
 ======
