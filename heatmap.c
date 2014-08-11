@@ -224,7 +224,7 @@ heatmap_stamp_t* heatmap_stamp_gen_nonlinear(unsigned r, float (*distshape)(floa
         float* line = stamp + y*d;
         unsigned x;
         for(x = 0 ; x < d ; ++x, ++line) {
-            const float dist = sqrtf((x-r)*(x-r) + (y-r)*(y-r))/(float)(r+1);
+            const float dist = sqrtf((float)((x-r)*(x-r) + (y-r)*(y-r)))/(float)(r+1);
             const float ds = (*distshape)(dist);
             /* This doesn't generate optimal assembly, but meh, it's readable. */
             const float clamped_ds = ds > 1.0f ? 1.0f
