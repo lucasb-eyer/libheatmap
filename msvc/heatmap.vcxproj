@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{54A83F4B-0E5D-4D5D-928D-8742E27E8CB0}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>heatmap</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(SolutionDir)\heatmap.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\Blues.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\BrBG.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\BuGn.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\BuPu.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\GnBu.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\gray.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\Greens.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\Greys.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\Oranges.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\OrRd.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\PiYG.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\PRGn.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\PuBu.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\PuBuGn.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\PuOr.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\PuRd.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\Purples.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdBu.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdGy.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdPu.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdYlBu.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdYlGn.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\Reds.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\Spectral.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\YlGn.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\YlGnBu.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\YlOrBr.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\YlOrRd.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(SolutionDir)\heatmap.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\Blues.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\BrBG.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\BuGn.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\BuPu.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\GnBu.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\gray.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\Greens.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\Greys.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\Oranges.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\OrRd.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\PiYG.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\PRGn.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\PuBu.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\PuBuGn.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\PuOr.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\PuRd.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\Purples.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdBu.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdGy.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdPu.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdYlBu.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdYlGn.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\Reds.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\Spectral.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\YlGn.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\YlGnBu.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\YlOrBr.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\YlOrRd.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SolutionDir)\LICENSE" />
+    <None Include="$(SolutionDir)\README.md" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

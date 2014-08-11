@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(SolutionDir)\heatmap.c" />
+    <ClCompile Include="$(SolutionDir)\colorschemes\Blues.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\BrBG.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\BuGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\BuPu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\GnBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\gray.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\Greens.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\Greys.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\Oranges.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\OrRd.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\PiYG.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\PRGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\PuBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\PuBuGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\PuOr.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\PuRd.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\Purples.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdGy.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdPu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdYlBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\RdYlGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\Reds.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\Spectral.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\YlGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\YlGnBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\YlOrBr.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SolutionDir)\colorschemes\YlOrRd.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(SolutionDir)\heatmap.h" />
+    <ClInclude Include="$(SolutionDir)\colorschemes\Blues.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\BrBG.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\BuGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\BuPu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\GnBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\gray.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\Greens.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\Greys.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\Oranges.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\OrRd.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\PiYG.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\PRGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\PuBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\PuBuGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\PuOr.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\PuRd.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\Purples.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdGy.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdPu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdYlBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\RdYlGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\Reds.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\Spectral.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\YlGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\YlGnBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\YlOrBr.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SolutionDir)\colorschemes\YlOrRd.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SolutionDir)\LICENSE" />
+    <None Include="$(SolutionDir)\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="colorschemes">
+      <UniqueIdentifier>{bde7b4c6-c168-430c-9097-2ba35a954d38}</UniqueIdentifier>
+      <Extensions>
+      </Extensions>
+    </Filter>
+  </ItemGroup>
+</Project>
