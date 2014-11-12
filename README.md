@@ -39,6 +39,8 @@ What's not in there, which might be present in other heatmap packages?
   image files**. What it does generate is pixel-data, which you can then store
   into an image file, upload to a server, upload to a GPU texture, or feed to
   your cat. Well maybe not all of these.
+- When there's roughly more points than pixels on the map, the current algorithm
+  is not optimal. I'll add a better one in the future; let me know if you need it.
 - It also doesn't take care of your grandparents/children.
 
 What the hell, no image file creation?
@@ -61,7 +63,7 @@ The short answer is because I can.
 While investigating data from [DOTA2](http://dota2.com/)
 [replay files](https://github.com/dschleck/edith), I wanted to generate
 heatmaps of the players' positions at various events. None of the heatmap
-libraries I have tried satisfied my needs; they were either to unflexible or
+libraries I have tried satisfied my needs; they were either too unflexible or
 too slow. (I wanted to process thousands of games with thousands of points per
 game.) Of course, this library is both flexible and highly efficient :)
 
