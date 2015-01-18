@@ -266,7 +266,7 @@ The variable-name of a colorscheme follows the `heatmap_cs_NAME_VARIANT`
 pattern, where `NAME` is the name in the overview picture above and `VARIANT`
 is one of `discrete`, `soft`, `mixed`, and `mixed_exp`.
 
-I have created a page to [preview all shipped colorschemes](http://lucasb.eyer.be/projects/heatmap/colorschemes.html).
+I have created a page to [preview all shipped colorschemes](http://lb.eyer.be/a/colorschemes.html).
 
 More advanced stuff
 -------------------
