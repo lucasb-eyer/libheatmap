@@ -41,6 +41,9 @@ clean:
 	rm -f tests/test
 	find . -name '*.[os]' -print0 | xargs -0 rm -f
 
+test: tests
+	tests/test
+
 heatmap.o: heatmap.c heatmap.h
 	$(CC) -c $< $(CFLAGS) -o $@
 
