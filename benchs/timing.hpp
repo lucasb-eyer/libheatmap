@@ -69,7 +69,7 @@ struct RepeatTimer {
         std::sort(_ts.begin(), _ts.end());
         double med = _ts[_ts.size()/2];
         std::cout << "done in a median of " << std::fixed << med * 1000.0 << "ms (avg is " << avg * 1000.0 << ")" << std::endl;
-        std::cerr << "'medt': " << med << ", 'avgt': " << avg << "}," << std::endl;
+        std::cerr << "'medt': " << med << ", 'avgt': " << avg << "}";
     }
     double _t0;
     std::vector<double> _ts;

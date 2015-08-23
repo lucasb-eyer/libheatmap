@@ -22,6 +22,9 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+// Tests the speed of various amounts of points of various stamp sizes.
+
+// In the past, I already did the following:
 // Test the speed of calling the heatmap point adding function once for
 // every single point (a la glVertex3f) vs. calling one function which
 // adds a whole buffer of points (a la glVertexPointer). Basically, time
@@ -31,9 +34,9 @@
 
 static const size_t NPOINTS_MIN = 1;
 static const size_t NPOINTS_MAX = 1000*1000;
-static const size_t MAPSIZE = 15360;
 static const size_t STAMP_MIN = 1;
 static const size_t STAMP_MAX = 512;
+static const size_t MAPSIZE = STAMP_MAX*30;
 
 int main(/* int argc, char *argv[] */)
 {
@@ -54,10 +57,13 @@ int main(/* int argc, char *argv[] */)
                     heatmap_add_point_with_stamp(hm.get(), points[2*i], points[2*i+1], stamp.get());
                 }
             }
+            if(npoints < NPOINTS_MAX || stampsize < STAMP_MAX)
+                std::cerr << "," << std::endl;
 
             ret += hm->buf[0] > 0.0f;
         }
     }
+    std::cerr << std::endl << "]" << std::endl;
 
     return ret;
 }

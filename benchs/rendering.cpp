@@ -60,6 +60,7 @@ int main(/* int argc, char *argv[] */)
             heatmap_render_to(hm.get(), heatmap_cs_default, &imgbuf[0]);
         }
         ret += imgbuf[0];
+        std::cerr << "," << std::endl;
 
         std::cerr << "{'mapsize': " << mapsize << ", 'saturation': true, ";
         std::cout << "Rendering a " << mapsize << "² map with saturation... " << std::flush;
@@ -67,8 +68,11 @@ int main(/* int argc, char *argv[] */)
             heatmap_render_saturated_to(hm.get(), heatmap_cs_default, 0.5f, &imgbuf[0]);
         }
         ret += imgbuf[0];
+
+        if(mapsize < MAPSIZE_MAX)
+            std::cerr << "," << std::endl;
     }
-    std::cerr << "]" << std::endl;
+    std::cerr << std::endl << "]" << std::endl;
 
     return ret;
 }
