@@ -219,7 +219,6 @@ int main(int argc, char* argv[])
 
     unsigned int x, y;
     while(std::cin >> x >> y) {
-        x /= 7.998427672955975; y /= 7.998427672955975;
         if(x < w && y < h) {
             heatmap_add_point_with_stamp(hm, x, y, stamp);
         } else {
