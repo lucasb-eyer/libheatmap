@@ -10,7 +10,7 @@ Not your typical website-user-focus-heatmap library!
 
 **Note:** While the library is fully functional and thoroughly tested,
 the best possible performance has not been attained yet. I'm still trying out
-various optimizations in other branches. See Tuning below.
+various optimizations in other branches every now-and-then. See Tuning below.
 
 What exactly?
 =============
@@ -26,7 +26,7 @@ So, what's in here? (Buzzword-list incoming)
 - Comes with gorgeous **colorschemes**, but you can also use **your own**.
 - You can declare **custom stamps** for more artistic freedom.
 - It's all strict **ANSI C89** packed into a single .h/.c tandem that you can
-  simply **drop into your project** and start using.
+  simply **drop into your project** and start using (MIT licensed).
 - It comes with **extensive unit-tests** and ran through [valgrind](http://valgrind.org/);
   it is thus more likely to contain less bugs, or so they say.
 - It has been **thoroughly benchmarked**, assuring you high performance.
@@ -119,11 +119,15 @@ Or, in order to have a useless use of `cat`:
 $ cat points.txt | examples/heatmap_gen 500 500 10 > heatmap.png
 ```
 
+The colorscheme can be chosen as a last argument.
+Run `examples/heatmap_gen -l` to get a list of available colorschemes and
+browse them in this [demo of colorschemes](http://lb.eyer.be/a/colorschemes.html).
+
 For example, the heatmap you saw in the introduction has been created with the
 following monster command:
 
 ```bash
-$ edith/build/edith replays/fountainhooks.dem | cut -d , -f 3- | awk ' !x[$0]++' | python3 edith/cvt.py | heatmap-github/examples/heatmap_gen `identify -format "%w %h" dota2map.png` 150 > deathmap.png
+$ edith/build/edith replays/fountainhooks.dem | cut -d , -f 3- | awk ' !x[$0]++' | python3 edith/cvt.py | heatmap-github/examples/heatmap_gen `identify -format "%w %h" dota2map.png` 150 Spectral_mixed > deathmap.png
 ```
 
 But let's now look at using the library programmatically.
@@ -273,7 +277,11 @@ More advanced stuff
 
 ### Rendering with saturation instead of normalization
 
-__TODO:__ Explain this!
+__TODO:__ Explain this! Basically, instead of mapping the max to the last color
+in the scheme and renormalizing, a saturation constant is used.
+This can be useful for suppressing extreme peaks/outliers or for keeping a
+constant intensity distribution across multiple heatmaps, e.g. when creating
+frames for an animation.
 
 ### Creating a custom colorscheme
 
