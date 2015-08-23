@@ -71,6 +71,13 @@ static bool heatmap_eq(heatmap_t* hm, float* expected)
     return 0 == memcmp(expected, hm->buf, sizeof(float)*hm->w*hm->h);
 }
 
+static bool heatmaps_eq(heatmap_t* hm, heatmap_t* expected)
+{
+    return hm->w == expected->w
+        && hm->h == expected->h
+        && 0 == memcmp(expected->buf, hm->buf, sizeof(float)*hm->w*hm->h);
+}
+
 static bool stamp_eq(heatmap_stamp_t* s, float* expected)
 {
     return 0 == memcmp(expected, s->buf, sizeof(float)*s->w*s->h);
@@ -117,7 +124,13 @@ void test_add_point_with_stamp_center()
     ENSURE_THAT("the heatmap equals double the stamp", heatmap_eq(hm, expected));
     ENSURE_THAT("the max of the heatmap is two", hm->max == 2.0f);
 
+    heatmap_t* hm2 = heatmap_new(3, 3);
+    heatmap_add_weighted_point_with_stamp(hm2, 1, 1, 2.0f, &g_3x3_stamp);
+
+    ENSURE_THAT("a point with weight 2.0 generates the same heatmap.", heatmaps_eq(hm2, hm));
+
     heatmap_free(hm);
+    heatmap_free(hm2);
 }
 
 void test_add_point_with_stamp_topleft()
@@ -134,7 +147,15 @@ void test_add_point_with_stamp_topleft()
     ENSURE_THAT("top-left point is correct", heatmap_eq(hm, expected));
     ENSURE_THAT("the max of the heatmap is one", hm->max == 1.0f);
 
+    heatmap_t* hm2 = heatmap_new(3, 3);
+    heatmap_add_point_with_stamp(hm, 0, 0, &g_3x3_stamp);
+    heatmap_add_point_with_stamp(hm, 0, 0, &g_3x3_stamp);
+    heatmap_add_weighted_point_with_stamp(hm2, 0, 0, 3.0f, &g_3x3_stamp);
+
+    ENSURE_THAT("a point with weight 3.0 generates the same heatmap as three regular ones.", heatmaps_eq(hm2, hm));
+
     heatmap_free(hm);
+    heatmap_free(hm2);
 }
 
 void test_add_point_with_stamp_botright()
@@ -151,7 +172,14 @@ void test_add_point_with_stamp_botright()
     ENSURE_THAT("bot-right point is correct", heatmap_eq(hm, expected));
     ENSURE_THAT("the max of the heatmap is one", hm->max == 1.0f);
 
+    heatmap_t* hm2 = heatmap_new(3, 3);
+    heatmap_add_point_with_stamp(hm, 2, 2, &g_3x3_stamp);
+    heatmap_add_weighted_point_with_stamp(hm2, 2, 2, 2.0f, &g_3x3_stamp);
+
+    ENSURE_THAT("a point with weight 2.0 generates the same heatmap as two regular ones.", heatmaps_eq(hm2, hm));
+
     heatmap_free(hm);
+    heatmap_free(hm2);
 }
 
 void test_add_point_with_stamp_outside()
@@ -168,6 +196,13 @@ void test_add_point_with_stamp_outside()
     heatmap_add_point_with_stamp(hm, 3, 3, &g_3x3_stamp);
 
     ENSURE_THAT("no point outside the map got added", heatmap_eq(hm, expected));
+    ENSURE_THAT("the max of the heatmap is zero", hm->max == 0.0f);
+
+    heatmap_add_weighted_point_with_stamp(hm, 3, 2, 1.5f, &g_3x3_stamp);
+    heatmap_add_weighted_point_with_stamp(hm, 2, 3, 1.5f, &g_3x3_stamp);
+    heatmap_add_weighted_point_with_stamp(hm, 3, 3, 1.5f, &g_3x3_stamp);
+
+    ENSURE_THAT("no weighted point outside the map got added", heatmap_eq(hm, expected));
     ENSURE_THAT("the max of the heatmap is zero", hm->max == 0.0f);
 
     heatmap_free(hm);

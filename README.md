@@ -25,6 +25,7 @@ So, what's in here? (Buzzword-list incoming)
 - The heatmaps can be either **normalized** or **saturated**.
 - Comes with gorgeous **colorschemes**, but you can also use **your own**.
 - You can declare **custom stamps** for more artistic freedom.
+- Efficient support for **weighted datapoints**.
 - It's all strict **ANSI C89** packed into a single .h/.c tandem that you can
   simply **drop into your project** and start using (MIT licensed).
 - It comes with **extensive unit-tests** and ran through [valgrind](http://valgrind.org/);
@@ -128,6 +129,20 @@ following monster command:
 
 ```bash
 $ edith/build/edith replays/fountainhooks.dem | cut -d , -f 3- | awk ' !x[$0]++' | python3 edith/cvt.py | heatmap-github/examples/heatmap_gen `identify -format "%w %h" dota2map.png` 150 Spectral_mixed > deathmap.png
+```
+
+A companion binary to this one is `examples/heatmap_gen_weighted`, which works
+exactly the same, except that all points need to come with a third value
+specifying the point's weight as a floating-point number, e.g.:
+
+```
+head -6 weighted_points.txt
+12 123 3.0
+52 12 1.0
+321 94 1.0
+87 483 1.5
+60 10 0.5
+90 470 1.234
 ```
 
 But let's now look at using the library programmatically.
@@ -271,6 +286,23 @@ pattern, where `NAME` is the name in the overview picture above and `VARIANT`
 is one of `discrete`, `soft`, `mixed`, and `mixed_exp`.
 
 I have created a page to [preview all shipped colorschemes](http://lb.eyer.be/a/colorschemes.html).
+
+### Using weighted datapoints
+
+In some applications, the datapoints come with associated weights, which encode
+some kind of importance of that point. A weighted point can be added to the
+heatmap using the `heatmap_add_weighted_point` and
+`heatmap_add_weighted_point_with_stamp` functions which take an additional
+weight parameter after `x` and `y`. The weight may be any non-negative floating-
+point value.
+
+Adding a point with a weight of `3.0` has exactly the same effect
+as adding that point three times without a weight, but is (almost) as efficient
+as adding a single unweighted point. In addition, weights allow for arbitrary
+weighting (heh) such as `0.123`, which wouldn't be possible by repeatedly
+adding unweighted points.
+
+Weighted and unweighted points can be mixed arbitrarily using the API.
 
 More advanced stuff
 -------------------

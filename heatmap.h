@@ -75,6 +75,11 @@ void heatmap_add_point(heatmap_t* h, unsigned x, unsigned y);
 /* Adds a single point to the heatmap using a given stamp. */
 void heatmap_add_point_with_stamp(heatmap_t* h, unsigned x, unsigned y, const heatmap_stamp_t* stamp);
 
+/* Adds a single weighted point to the heatmap using the default stamp. */
+void heatmap_add_weighted_point(heatmap_t* h, unsigned x, unsigned y, float w);
+/* Adds a single weighted point to the heatmap using a given stamp. */
+void heatmap_add_weighted_point_with_stamp(heatmap_t* h, unsigned x, unsigned y, float w, const heatmap_stamp_t* stamp);
+
 /* Renders an image of the heatmap into the given colorbuf.
  *
  * colorbuf: A buffer large enough to hold 4*heatmap_width*heatmap_height

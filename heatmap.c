@@ -113,6 +113,57 @@ void heatmap_add_point_with_stamp(heatmap_t* h, unsigned x, unsigned y, const he
     } /* I hate you very much! */
 }
 
+void heatmap_add_weighted_point(heatmap_t* h, unsigned x, unsigned y, float w)
+{
+    heatmap_add_weighted_point_with_stamp(h, x, y, w, &stamp_default_4);
+}
+
+/* Initial timings do show a difference large enough (~10% slower without FMA)
+ * that we do care about splitting the implementation,
+ * even though JUST A SINGLE LINE OF CODE has changed!
+ * And I don't want to spoil the readability by using macro-trickery to avoid duplication.
+ * sad :-(
+ */
+void heatmap_add_weighted_point_with_stamp(heatmap_t* h, unsigned x, unsigned y, float w, const heatmap_stamp_t* stamp)
+{
+    /* I'm still unsure whether we want this to be an assert or not... */
+    if(x >= h->w || y >= h->h)
+        return;
+
+    /* Currently, negative weights are not supported as they mess with the max. */
+    assert(w >= 0.0f);
+
+    /* I hate you, C */
+    {
+        /* Note: the order of operations is important, since we're computing with unsigned! */
+
+        /* These are [first, last) pairs in the STAMP's pixels. */
+        const unsigned x0 = x < stamp->w/2 ? (stamp->w/2 - x) : 0;
+        const unsigned y0 = y < stamp->h/2 ? (stamp->h/2 - y) : 0;
+        const unsigned x1 = (x + stamp->w/2) < h->w ? stamp->w : stamp->w/2 + (h->w - x);
+        const unsigned y1 = (y + stamp->h/2) < h->h ? stamp->h : stamp->h/2 + (h->h - y);
+
+        unsigned iy;
+
+        for(iy = y0 ; iy < y1 ; ++iy) {
+            /* TODO: could it be clearer by using separate vars and computing a ystep? */
+            float* line = h->buf + ((y + iy) - stamp->h/2)*h->w + (x + x0) - stamp->w/2;
+            const float* stampline = stamp->buf + iy*stamp->w + x0;
+
+            unsigned ix;
+            for(ix = x0 ; ix < x1 ; ++ix, ++line, ++stampline) {
+                /* TODO: see unweighted function */
+                assert(*stampline >= 0.0f);
+
+                *line += *stampline * w;
+                if(*line > h->max) {h->max = *line;}
+
+                assert(*line >= 0.0f);
+            }
+        }
+    } /* I hate you very much! */
+}
+
 unsigned char* heatmap_render_default_to(const heatmap_t* h, unsigned char* colorbuf)
 {
     return heatmap_render_to(h, heatmap_cs_default, colorbuf);

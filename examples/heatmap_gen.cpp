@@ -189,10 +189,20 @@ int main(int argc, char* argv[])
         std::cout << "Usage:" << std::endl;
         std::cout << "  " << argv[0] << " WIDTH HEIGHT [STAMP_RADIUS [COLORSCHEME]] < points.txt > heatmap.png" << std::endl;
         std::cout << std::endl;
+#ifdef WEIGHTED
+        std::cout << "  points.txt should contain a list of space-separated triplets of x, y and w" << std::endl;
+        std::cout << "  where x and y are coordinates (as unsigned integers) of points to put onto" << std::endl;
+        std::cout << "  the heatmap and w is the weight (as float) of the point, e.g.:" << std::endl;
+        std::cout << "    5 10 0.5 1 13 12.3 125 10 1.0" << std::endl;
+        std::cout << "  will add the points (5, 10) with weight 0.5, (1, 13) with weight 12.3," << std::endl;
+        std::cout << "  and (125, 10) with weight 1.0 onto the map." << std::endl;
+#else
         std::cout << "  points.txt should contain a list of space-separated pairs of x and y" << std::endl;
         std::cout << "  coordinates (as unsigned integers) of points to put onto the heatmap, e.g.:" << std::endl;
         std::cout << "    5 10 1 13 125 10" << std::endl;
         std::cout << "  will add the points (5, 10), (1, 13), and (125, 10) onto the map." << std::endl;
+#endif // WEIGHTED
+        std::cout << "  Note that a newline counts as a space, so you may input one point per line." << std::endl;
         std::cout << std::endl;
         std::cout << "  The default STAMP_RADIUS is a twentieth of the smallest heatmap dimension." << std::endl;
         std::cout << "  For instance, for a 512x1024 heatmap, the default stamp_radius is 25," << std::endl;
@@ -218,9 +228,16 @@ int main(int argc, char* argv[])
     const heatmap_colorscheme_t* colorscheme = argc == 5 ? g_schemes[argv[4]] : heatmap_cs_default;
 
     unsigned int x, y;
+    float weight = 1.0f;
+#ifdef WEIGHTED
+    while(std::cin >> x >> y >> weight) {
+#else
     while(std::cin >> x >> y) {
+#endif // WEIGHTED
         if(x < w && y < h) {
-            heatmap_add_point_with_stamp(hm, x, y, stamp);
+            // Always using the weighted one even on unweighted data is not a
+            // drama for this example and keeps the code somewhat clearer.
+            heatmap_add_weighted_point_with_stamp(hm, x, y, weight, stamp);
         } else {
             std::cerr << "Warning: Skipping out-of-bound input coordinate: (" << x << "," << y << ")." << std::endl;
         }

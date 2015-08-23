@@ -2,10 +2,12 @@
 *.[osa]
 *.so
 benchs/add_point_with_stamp
+benchs/weighted_unweighted
 benchs/rendering
 examples/customstamp_heatmaps
 examples/customstamps
 examples/heatmap_gen
+examples/heatmap_gen_weighted
 examples/huge
 examples/show_colorschemes
 examples/simplest_c
