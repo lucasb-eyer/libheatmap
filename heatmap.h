@@ -28,6 +28,15 @@
 /* Necessary for size_t */
 #include <stddef.h>
 
+/* Thanks, Windows! */
+#if defined(HEATMAPDLL_EXPORTS)
+#define HEATMAP_API __declspec(dllexport)
+#elif defined(HEATMAPDLL_IMPORTS)
+#define HEATMAP_API __declspec(dllimport)
+#else
+#define HEATMAP_API
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -66,19 +75,19 @@ typedef struct {
 } heatmap_colorscheme_t;
 
 /* Creates a new heatmap of given size. */
-heatmap_t* heatmap_new(unsigned w, unsigned h);
+HEATMAP_API heatmap_t* heatmap_new(unsigned w, unsigned h);
 /* Frees up all memory taken by the heatmap. */
-void heatmap_free(heatmap_t* h);
+HEATMAP_API void heatmap_free(heatmap_t* h);
 
 /* Adds a single point to the heatmap using the default stamp. */
-void heatmap_add_point(heatmap_t* h, unsigned x, unsigned y);
+HEATMAP_API void heatmap_add_point(heatmap_t* h, unsigned x, unsigned y);
 /* Adds a single point to the heatmap using a given stamp. */
-void heatmap_add_point_with_stamp(heatmap_t* h, unsigned x, unsigned y, const heatmap_stamp_t* stamp);
+HEATMAP_API void heatmap_add_point_with_stamp(heatmap_t* h, unsigned x, unsigned y, const heatmap_stamp_t* stamp);
 
 /* Adds a single weighted point to the heatmap using the default stamp. */
-void heatmap_add_weighted_point(heatmap_t* h, unsigned x, unsigned y, float w);
+HEATMAP_API void heatmap_add_weighted_point(heatmap_t* h, unsigned x, unsigned y, float w);
 /* Adds a single weighted point to the heatmap using a given stamp. */
-void heatmap_add_weighted_point_with_stamp(heatmap_t* h, unsigned x, unsigned y, float w, const heatmap_stamp_t* stamp);
+HEATMAP_API void heatmap_add_weighted_point_with_stamp(heatmap_t* h, unsigned x, unsigned y, float w, const heatmap_stamp_t* stamp);
 
 /* Renders an image of the heatmap into the given colorbuf.
  *
@@ -92,7 +101,7 @@ void heatmap_add_weighted_point_with_stamp(heatmap_t* h, unsigned x, unsigned y,
  *         a newly malloc'd buffer is returned. This buffer needs to be free'd
  *         by the caller whenever it is not used anymore.
  */
-unsigned char* heatmap_render_default_to(const heatmap_t* h, unsigned char* colorbuf);
+HEATMAP_API unsigned char* heatmap_render_default_to(const heatmap_t* h, unsigned char* colorbuf);
 
 /* Renders an RGB image of the heatmap into the given colorbuf,
  * using a given colorscheme.
@@ -102,7 +111,7 @@ unsigned char* heatmap_render_default_to(const heatmap_t* h, unsigned char* colo
  * For details on the colorbuf and the return value, refer to the documentation
  * of `heatmap_render_default_to`.
  */
-unsigned char* heatmap_render_to(const heatmap_t* h, const heatmap_colorscheme_t* colorscheme, unsigned char* colorbuf);
+HEATMAP_API unsigned char* heatmap_render_to(const heatmap_t* h, const heatmap_colorscheme_t* colorscheme, unsigned char* colorbuf);
 
 /* Renders an RGB image of the heatmap into the given colorbuf,
  * using a given colorscheme.
@@ -116,7 +125,7 @@ unsigned char* heatmap_render_to(const heatmap_t* h, const heatmap_colorscheme_t
  * For details on the colorbuf and the return value, refer to the documentation
  * of `heatmap_render_default_to`.
  */
-unsigned char* heatmap_render_saturated_to(const heatmap_t* h, const heatmap_colorscheme_t* colorscheme, float saturation, unsigned char* colorbuf);
+HEATMAP_API unsigned char* heatmap_render_saturated_to(const heatmap_t* h, const heatmap_colorscheme_t* colorscheme, float saturation, unsigned char* colorbuf);
 
 /* Creates a new stamp COPYING the given w*h floats in data.
  *
@@ -126,7 +135,7 @@ unsigned char* heatmap_render_saturated_to(const heatmap_t* h, const heatmap_col
  *
  * For more information about stamps, read `heatmap_stamp_t`'s documentation.
  */
-heatmap_stamp_t* heatmap_stamp_load(unsigned w, unsigned h, float* data);
+HEATMAP_API heatmap_stamp_t* heatmap_stamp_load(unsigned w, unsigned h, float* data);
 
 /* Generates a default round stamp of a given radius. This means the stamp will
  * have a size of 2*radius+1 square. The default stamp is just a spherical
@@ -134,7 +143,7 @@ heatmap_stamp_t* heatmap_stamp_load(unsigned w, unsigned h, float* data);
  *
  * For more information about stamps, read `heatmap_stamp_t`'s documentation.
  */
-heatmap_stamp_t* heatmap_stamp_gen(unsigned radius);
+HEATMAP_API heatmap_stamp_t* heatmap_stamp_gen(unsigned radius);
 
 /* Generates a stamp just like `heatmap_stamp_gen` but calls the given
  * `distshape` function in order to determine the value of every single pixel.
@@ -147,10 +156,10 @@ heatmap_stamp_t* heatmap_stamp_gen(unsigned radius);
  *
  * For more information about stamps, read `heatmap_stamp_t`'s documentation.
  */
-heatmap_stamp_t* heatmap_stamp_gen_nonlinear(unsigned radius, float (*distshape)(float));
+HEATMAP_API heatmap_stamp_t* heatmap_stamp_gen_nonlinear(unsigned radius, float (*distshape)(float));
 
 /* Frees up all memory taken by the stamp. */
-void heatmap_stamp_free(heatmap_stamp_t* s);
+HEATMAP_API void heatmap_stamp_free(heatmap_stamp_t* s);
 
 /* Create a new colorscheme using a COPY of the given `ncolors` `colors`.
  *
@@ -159,12 +168,12 @@ void heatmap_stamp_free(heatmap_stamp_t* s);
  * For more information about colorschemes, read `heatmap_colorscheme_t`'s
  * documentation.
  */
-heatmap_colorscheme_t* heatmap_colorscheme_load(const unsigned char* colors, size_t ncolors);
+HEATMAP_API heatmap_colorscheme_t* heatmap_colorscheme_load(const unsigned char* colors, size_t ncolors);
 
 /* Frees up all memory taken by the colorscheme. */
-void heatmap_colorscheme_free(heatmap_colorscheme_t* cs);
+HEATMAP_API void heatmap_colorscheme_free(heatmap_colorscheme_t* cs);
 
-extern const heatmap_colorscheme_t* heatmap_cs_default;
+HEATMAP_API extern const heatmap_colorscheme_t* heatmap_cs_default;
 
 #ifdef __cplusplus
 } /* extern "C" */
