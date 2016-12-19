@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\heatmap.h" />
+    <ClInclude Include="..\colorschemes\Blues.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\BrBG.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\BuGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\BuPu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\GnBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\gray.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\Greens.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\Greys.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\Oranges.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\OrRd.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\PiYG.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\PRGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\PuBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\PuBuGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\PuOr.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\PuRd.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\Purples.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\RdBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\RdGy.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\RdPu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\RdYlBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\RdYlGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\Reds.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\Spectral.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\YlGn.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\YlGnBu.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\YlOrBr.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\colorschemes\YlOrRd.h">
+      <Filter>colorschemes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE" />
+    <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\heatmap.c" />
+    <ClCompile Include="..\colorschemes\Blues.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\BrBG.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\BuGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\BuPu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\GnBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\gray.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\Greens.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\Greys.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\Oranges.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\OrRd.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\PiYG.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\PRGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\PuBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\PuBuGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\PuOr.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\PuRd.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\Purples.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\RdBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\RdGy.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\RdPu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\RdYlBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\RdYlGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\Reds.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\Spectral.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\YlGn.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\YlGnBu.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\YlOrBr.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\colorschemes\YlOrRd.c">
+      <Filter>colorschemes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="colorschemes">
+      <UniqueIdentifier>{8b7da417-56a2-4b02-9af9-b2829609427a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
