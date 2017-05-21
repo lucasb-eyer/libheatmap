@@ -167,7 +167,7 @@ A basic usage example is called `simplest` and is provided in
 [many](examples/simplest.c)
 [different](examples/simplest.cpp)
 [programming](examples/simplest.py)
-languages in the `examples` directory. Here are some for your reading pleasure:
+[languages](examples/simplest.go) in the `examples` directory. Here are some for your reading pleasure:
 
 ### In C++
 
