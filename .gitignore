@@ -25,3 +25,7 @@ Debug/
 Release/
 *.sdf
 *.suo
+
+heatmap.js
+heatmap.js.map
+

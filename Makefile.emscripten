@@ -1,0 +1,5 @@
+CC=emcc
+
+all:
+	$(CC) -o heatmap.js -s EXPORTED_FUNCTIONS="['_heatmap_new', '_heatmap_free', '_heatmap_addpoint', '_heatmap_render_default_to', '_heatmap_render_to']" heatmap.c
+
