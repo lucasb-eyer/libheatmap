@@ -3,6 +3,10 @@ CXX?=g++
 AR?=ar
 
 # Release mode (If just dropping the lib into your project, check out -flto too.)
+#
+# Note1: OpenMP is (currently) not required by the lib, just benchmarking.
+# Note2: the -Wa,-ahl=... part only generates .s assembly so one can see generated code.
+# Note3: When using `-flto`, you should add the same -O to LDFLAGS as to FLAGS.
 FLAGS=-fPIC -Wall -Wextra -I. -O3 -g -DNDEBUG -fopenmp -Wa,-ahl=$(@:.o=.s)
 LDFLAGS=-fopenmp -O3 -lm
 
@@ -11,9 +15,6 @@ LDFLAGS=-fopenmp -O3 -lm
 # LDFLAGS=-fopenmp -O0 -g -lm
 # TODO: Play with -D_GLIBCXX_PARALLEL
 # TODO: Play with -D_GLIBCXX_PROFILE
-
-# Also generate .s assembly output file:
-# FLAGS=$(FLAGS) -Wa,-ahl=$(@:.o=.s)
 
 CFLAGS=$(FLAGS) -pedantic
 CXXFLAGS=$(FLAGS) -std=c++0x
