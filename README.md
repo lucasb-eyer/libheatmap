@@ -48,7 +48,7 @@ What the hell, no image file creation?
 ======================================
 
 Yep. This library is meant to be embedded in larger things or used from higher-
-level languages, all of which have their own image file creation idiosyncraties.
+level languages, all of which have their own image file creation idiosyncracies.
 I love tiny, self-contained libraries that play well (i.e. simply don't play)
 with their environment.
 
