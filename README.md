@@ -231,6 +231,15 @@ w, h, npoints = 256, 512, 1000
 # Load the heatmap library using ctypes
 libhm = CDLL(pjoin(dirname(__file__), '..', 'libheatmap.so'))
 
+# Here, we describe the signatures of the various functions.
+# TBH, I'm not sure why this is necessary nowadays whereas it wasn't in the past.
+# If someone knows, please explain in a Github issue, or a PR to here!
+libhm.heatmap_new.argtypes = [c_ulong, c_ulong]
+libhm.heatmap_new.restype = c_void_p
+libhm.heatmap_add_point.argtypes = [c_void_p, c_ulong, c_ulong]
+libhm.heatmap_render_default_to.argtypes = [c_void_p, POINTER(c_ubyte)]
+libhm.heatmap_free.argtypes = [c_void_p]
+
 # Create the heatmap object with the given dimensions (in pixel).
 hm = libhm.heatmap_new(w, h)
 

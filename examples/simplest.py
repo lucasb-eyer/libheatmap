@@ -26,19 +26,27 @@
 
 from os.path import join as pjoin, dirname
 from random import gauss
-from ctypes import CDLL, c_ulong, c_ubyte
-import Image
+from ctypes import CDLL, POINTER, c_ulong, c_ubyte, c_void_p
 
 w, h, npoints = 256, 512, 1000
 
 # Load the heatmap library using ctypes
 libhm = CDLL(pjoin(dirname(__file__), '..', 'libheatmap.so'))
 
+# Here, we describe the signatures of the various functions.
+# TBH, I'm not sure why this is necessary nowadays whereas it wasn't in the past.
+# If someone knows, please explain in a Github issue, or a PR to here!
+libhm.heatmap_new.argtypes = [c_ulong, c_ulong]
+libhm.heatmap_new.restype = c_void_p
+libhm.heatmap_add_point.argtypes = [c_void_p, c_ulong, c_ulong]
+libhm.heatmap_render_default_to.argtypes = [c_void_p, POINTER(c_ubyte)]
+libhm.heatmap_free.argtypes = [c_void_p]
+
 # Create the heatmap object with the given dimensions (in pixel).
 hm = libhm.heatmap_new(w, h)
 
 # Add a bunch of random points to the heatmap now.
-for x, y in ((int(gauss(w*0.5, w/6.0)), int(gauss(h*0.5, h/6.0))) for _ in xrange(npoints)):
+for x, y in ((int(gauss(w*0.5, w/6.0)), int(gauss(h*0.5, h/6.0))) for _ in range(npoints)):
     libhm.heatmap_add_point(hm, c_ulong(x), c_ulong(y))
 
 # This creates an image out of the heatmap.
@@ -50,5 +58,6 @@ libhm.heatmap_render_default_to(hm, rawimg)
 libhm.heatmap_free(hm)
 
 # Use the PIL (for example) to make a png file out of that.
+import Image
 img = Image.frombuffer('RGBA', (w, h), rawimg, 'raw', 'RGBA', 0, 1)
 img.save('heatmap.png')
