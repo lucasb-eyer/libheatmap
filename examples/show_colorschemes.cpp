@@ -222,6 +222,7 @@ int main(int argc, char* argv[])
         }
     }
 
+    heatmap_stamp_free(stamp);
     heatmap_free(hm);
     return 0;
 }
