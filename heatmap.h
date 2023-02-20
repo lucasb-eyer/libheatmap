@@ -32,6 +32,12 @@
 extern "C" {
 #endif
 
+#define         CT_GREY  0 /*greyscale: 1,2,4,8,16 bit*/
+#define          CT_RGB  2 /*RGB: 8,16 bit*/
+#define      CT_PALETTE  3 /*palette: 1,2,4,8 bit*/
+#define   CT_GREY_ALPHA  4 /*greyscale with alpha: 8,16 bit*/
+#define         CT_RGBA  6 /*RGB with alpha: 8,16 bit*/
+
 /* Maybe make an opaque type out of this. But then again,
  * I'm assuming the users of this lib are not stupid here.
  * If you mess with the internals and things break, blame yourself.
@@ -63,6 +69,8 @@ typedef struct {
 typedef struct {
     const unsigned char* colors;  /* Color values in RGBA. */
     size_t ncolors;               /* Amount of colors (not amount of bytes or array size). */
+    unsigned color_type; /* CT_GREY, CT_RGB, CT_PALETTE, CT_GREY_ALPHA, CT_RGBA*/
+    unsigned bpp;  /* bits per pixel: 1 2 4 8 16, see LodePNGColorType in lodepng.h*/
 } heatmap_colorscheme_t;
 
 /* Creates a new heatmap of given size. */
